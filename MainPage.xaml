@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pivculator.MainPage">
+
+    <StackLayout BackgroundColor="#ebbc5e">
+
+        <Frame  Margin="5,5,5,0" CornerRadius="10" BorderColor="#875f0f" BackgroundColor="Transparent">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" >
+                    <Entry x:Name="namefield" Placeholder="наименование" WidthRequest="150"/>
+                    <Entry x:Name="alchofield" Placeholder="градус" WidthRequest="60" FontSize="11"/>
+                    <Entry x:Name="volfield" Placeholder="объем, мл" WidthRequest="60" FontSize="11"/>
+                    <Entry x:Name="cointfield" Placeholder="цена, р" WidthRequest="60" FontSize="11"/>
+                </StackLayout>
+                <Label Text="Насколько вкусно?" FontSize="18" TextColor="#3b3325" HorizontalTextAlignment="Center"/>
+                <Slider x:Name="slidefield" ThumbColor="#875f0f" MaximumTrackColor="#3b3325" 
+                        MinimumTrackColor="#3b3325" Minimum="0" Value="5" Maximum="10"/>
+                <Button Text="Добавить" TextColor="#ebbc5e" BackgroundColor="#875f0f" 
+                        CornerRadius="10" Clicked="PutItem"/>
+            </StackLayout>
+        </Frame>
+
+        <Frame Margin="5" Padding="10" CornerRadius="10" BorderColor="#875f0f" BackgroundColor="Transparent">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="наименование" Margin="5,5,0,0" WidthRequest="120" 
+                           TextColor="#3b3325" FontSize="15"/>
+                    <Label Text="р/мл спирта" Margin="0,5,0,0" WidthRequest="60" FontSize="15"/>
+                    <Label Text="уровень вкуса" Margin="0,5,0,0" WidthRequest="70" FontSize="15"/>
+                    <Label Text="цена, р/л" Margin="0,5,0,0" WidthRequest="50" FontSize="15"/>
+                </StackLayout>
+                <ScrollView >
+                    <ListView x:Name="itemcollection" ItemsSource="{Binding}" >
+                        <ListView.ItemTemplate >
+                            <DataTemplate >
+                                <ViewCell >
+                                    <ViewCell.View >
+                                        <Frame  Padding="6" Margin="0,0,0,5" 
+                                                BorderColor="#875f0f" BackgroundColor="Transparent" CornerRadius="10">
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Label FontSize="16" Margin="5,5,0,0" Text="{Binding Name}"
+                                                       WidthRequest="120" TextColor="#3b3325"/>
+                                                <Label FontSize="16" Margin="5,5,0,0" Text="{Binding Alcho}"
+                                                       WidthRequest="50" TextColor="#875f0f"/>
+
+                                                <Label FontSize="16" Margin="10,5,0,0" Text="{Binding Slide}" 
+                                                       WidthRequest="40" TextColor="#875f0f"/>
+                                                <Label FontSize="16" Margin="20,5,5,0" Text="{Binding Coint}" 
+                                                       WidthRequest="55" TextColor="#875f0f"/>
+
+                                                <Button FontSize="16" BindingContext="{Binding ID}" TextColor="#ebbc5e" 
+                                                        CornerRadius="15" Text="X" Padding="1" HeightRequest="18" 
+                                                        WidthRequest="26" Clicked="Delete" BackgroundColor="#875f0f"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+
+
+            </StackLayout>
+        </Frame>
+
+
+
+    </StackLayout>
+
+</ContentPage>
